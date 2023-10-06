@@ -29,7 +29,6 @@ for index, row in df.iterrows():
 
     # Plot the second part of the bar (remaining years)
     ax.barh(name, lifetime - parenting_age, left=y, color='lightgreen')
-    y += lifetime - parenting_age
 
 # Set labels and title
 ax.set_xlabel('Years')
