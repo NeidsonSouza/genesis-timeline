@@ -5,16 +5,13 @@ import numpy as np
 # Read the CSV file
 df = pd.read_csv('genesis_characters.csv')
 
-# Sort the DataFrame by Lifetime
-df.sort_values(by='lifetime', ascending=False, inplace=True)
-
 # Create a new figure
 fig, ax = plt.subplots(figsize=(10, 6))
 
 # Initialize a counter for the y-coordinate of bars
 y = 0
 
-# Iterate through each row in the DataFrame
+# Iterate through each row in the DataFrame without sorting
 for index, row in df.iterrows():
     name = row['name']
     parenting_age = row['parenting_age']
