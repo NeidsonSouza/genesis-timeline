@@ -34,6 +34,7 @@ for index, row in df.iterrows():
 ax.set_xlabel('Years')
 ax.set_ylabel('Characters')
 ax.set_title('Genesis Characters Gantt Chart')
+ax.invert_yaxis()
 
 # Display the Gantt chart
 plt.tight_layout()
