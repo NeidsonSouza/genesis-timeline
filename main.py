@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-# CSV content below:
+# CSV content:
 # name,parenting_age,lifetime
 # adam,130,930
 # seth,105,912
