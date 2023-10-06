@@ -2,6 +2,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
+# CSV content below:
+# name,parenting_age,lifetime
+# adam,130,930
+# seth,105,912
+# enosh,90,905
+
 # Read the CSV file
 df = pd.read_csv('genesis_characters.csv')
 
