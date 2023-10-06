@@ -2,13 +2,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-# CSV content:
-# name,parenting_age,lifetime
-# adam,130,930
-# seth,105,912
-# enosh,90,905
-
-# Read the CSV file
 df = pd.read_csv('genesis_characters.csv')
 
 # Create a new figure
@@ -19,21 +12,49 @@ y = 0
 
 # Iterate through each row in the DataFrame without sorting
 for index, row in df.iterrows():
-    name = row['name']
+    name = row['name'].capitalize()
     parenting_age = row['parenting_age']
     lifetime = row['lifetime']
 
     # Plot the first part of the bar (years until parenting age)
     ax.barh(name, parenting_age, left=y, color='lightblue')
-    y += parenting_age
+
+    # Add text inside the bar
+    text_x = y + (parenting_age / 2)
+    text_y = index
+    ax.text(
+        text_x,
+        text_y,
+        f'{parenting_age}',
+        ha='center',
+        va='center',
+        color='black',
+        fontsize=10
+    )
 
     # Plot the second part of the bar (remaining years)
+    y += parenting_age
     ax.barh(name, lifetime - parenting_age, left=y, color='lightgreen')
+
+    # Add text inside the bar
+    text_x = y + (lifetime - parenting_age) / 2
+    text_y = index
+    ax.text(
+        text_x,
+        text_y,
+        f'{lifetime - parenting_age}',
+        ha='center',
+        va='center',
+        color='black',
+        fontsize=10
+    )
 
 # Set labels and title
 ax.set_xlabel('Years')
 ax.set_ylabel('Characters')
-ax.set_title('Genesis Characters Gantt Chart')
+ax.set_title('Genesis Timeline')
+
+# Invert chart
 ax.invert_yaxis()
 
 # Display the Gantt chart
