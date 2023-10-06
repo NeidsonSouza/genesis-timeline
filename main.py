@@ -18,7 +18,7 @@ fig, ax = plt.subplots(figsize=(10, 6))
 y = 0
 
 # Iterate through each row in the DataFrame without sorting
-for index, row in df.iterrows():
+for index, row in df[::-1].iterrows():
     name = row['name']
     parenting_age = row['parenting_age']
     lifetime = row['lifetime']
