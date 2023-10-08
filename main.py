@@ -1,6 +1,5 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
 
 df = pd.read_csv('genesis_characters.csv')
 
@@ -20,17 +19,18 @@ for index, row in df.iterrows():
     ax.barh(name, parenting_age, left=y, color='lightblue')
 
     # Add text inside the bar
-    text_x = y + (parenting_age / 2)
-    text_y = index
-    ax.text(
-        text_x,
-        text_y,
-        f'{parenting_age}',
-        ha='center',
-        va='center',
-        color='black',
-        fontsize=10
-    )
+    if parenting_age > 0:
+        text_x = y + (parenting_age / 2)
+        text_y = index
+        ax.text(
+            text_x,
+            text_y,
+            f'{parenting_age}',
+            ha='center',
+            va='center',
+            color='black',
+            fontsize=10
+        )
 
     # Plot the second part of the bar (remaining years)
     y += parenting_age
