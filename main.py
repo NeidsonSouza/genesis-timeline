@@ -32,9 +32,10 @@ for index, row in df.iterrows():
             fontsize=10
         )
     if index > 0:
+        text_x = y - 10
         text_y = index
         ax.text(
-            y-10,
+            text_x,
             text_y,
             f'{name}',
             ha='right',
@@ -61,7 +62,7 @@ for index, row in df.iterrows():
     )
 
 # Set labels and title
-ax.set_xlabel('Years')
+ax.set_xlabel('Years Since Creation')
 ax.set_ylabel('Characters')
 ax.set_title('Genesis Timeline')
 
