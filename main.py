@@ -17,6 +17,13 @@ for index, row in df.iterrows():
 
     # Plot the first part of the bar (years until parenting age)
     ax.barh(name, parenting_age, left=y, color='lightblue')
+    ax.axvline(
+        x=y+lifetime,
+        color='red',
+        linestyle='--',
+        label='Vertical Line',
+        linewidth=0.4,
+    )
 
     # Add text inside the bar
     if parenting_age > 0:
@@ -46,15 +53,16 @@ for index, row in df.iterrows():
 
     # Plot the second part of the bar (remaining years)
     y += parenting_age
-    ax.barh(name, lifetime - parenting_age, left=y, color='lightgreen')
+    bar_length = lifetime - parenting_age
+    ax.barh(name, bar_length, left=y, color='lightgreen')
 
     # Add text inside the bar
-    text_x = y + (lifetime - parenting_age) / 2
+    text_x = y + bar_length / 2
     text_y = index
     ax.text(
         text_x,
         text_y,
-        f'{lifetime - parenting_age}',
+        f'{bar_length}',
         ha='center',
         va='center',
         color='black',
