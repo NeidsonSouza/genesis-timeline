@@ -31,6 +31,17 @@ for index, row in df.iterrows():
             color='black',
             fontsize=10
         )
+    if index > 0:
+        text_y = index
+        ax.text(
+            y-10,
+            text_y,
+            f'{name}',
+            ha='right',
+            va='center',
+            color='black',
+            fontsize=10
+        )
 
     # Plot the second part of the bar (remaining years)
     y += parenting_age
