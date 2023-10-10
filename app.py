@@ -8,7 +8,6 @@ fig, ax = plt.subplots(figsize=(10, 6))
 
 # Initialize a counter for the y-coordinate of bars
 y = 0
-
 # Iterate through each row in the DataFrame without sorting
 for index, row in df.iterrows():
     name = row['name'].capitalize()
@@ -17,8 +16,9 @@ for index, row in df.iterrows():
 
     # Plot the first part of the bar (years until parenting age)
     ax.barh(name, parenting_age, left=y, color='lightblue')
+    x = y + lifetime
     ax.axvline(
-        x=y+lifetime,
+        x=x,
         color='red',
         linestyle='--',
         label='Vertical Line',
@@ -50,6 +50,7 @@ for index, row in df.iterrows():
             color='black',
             fontsize=10
         )
+    
 
     # Plot the second part of the bar (remaining years)
     y += parenting_age
@@ -69,7 +70,22 @@ for index, row in df.iterrows():
         fontsize=10
     )
 
+    text_x = y + bar_length + 10
+    text_y = index
+    ax.text(
+        text_x,
+        text_y,
+        f'{name}',
+        ha='left',
+        va='center',
+        color='black',
+        fontsize=10
+    )
+
 # Set labels and title
+ax.set_xticks(list(range(100, 2500, 100))
+)
+ax.tick_params(axis='x', rotation=45)
 ax.set_xlabel('Years Since Creation')
 ax.set_ylabel('Characters')
 ax.set_title('Genesis Timeline')
