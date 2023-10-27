@@ -13,17 +13,32 @@ for index, row in df.iterrows():
     name = row['name'].capitalize()
     parenting_age = row['parenting_age']
     lifetime = row['lifetime']
+    if y > 0:
+        ax.hlines(y=index, xmin=0, xmax=y, colors='gray', lw=1)
+        text_x = y / 2
+        text_y = index
+        ax.text(
+            text_x,
+            text_y,
+            y,
+            ha='center',
+            va='bottom',
+            color='black',
+            fontsize=8
+        )
 
     # Plot the first part of the bar (years until parenting age)
-    ax.barh(name, parenting_age, left=y, color='lightblue')
+    # ax.barh(name, parenting_age, left=y, color='lightblue')
+    ax.barh(index, parenting_age, left=y, color='lightblue')
     x = y + lifetime
-    ax.axvline(
-        x=x,
-        color='red',
-        linestyle='--',
-        label='Vertical Line',
-        linewidth=0.4,
-    )
+    # ax.axvline(
+    #     x=x,
+    #     ymax=0.043,
+    #     color='red',
+    #     linestyle='--',
+    #     label='Vertical Line',
+    #     linewidth=0.4,
+    # )
 
     # Add text inside the bar
     if parenting_age > 0:
@@ -36,26 +51,15 @@ for index, row in df.iterrows():
             ha='center',
             va='center',
             color='black',
-            fontsize=10
+            fontsize=8
         )
-    if index > 0:
-        text_x = y - 10
-        text_y = index
-        ax.text(
-            text_x,
-            text_y,
-            f'{name}',
-            ha='right',
-            va='center',
-            color='black',
-            fontsize=10
-        )
-    
+
 
     # Plot the second part of the bar (remaining years)
     y += parenting_age
     bar_length = lifetime - parenting_age
-    ax.barh(name, bar_length, left=y, color='lightgreen')
+    # ax.barh(name, bar_length, left=y, color='lightgreen')
+    ax.barh(index, bar_length, left=y, color='lightgreen')
 
     # Add text inside the bar
     text_x = y + bar_length / 2
@@ -67,7 +71,7 @@ for index, row in df.iterrows():
         ha='center',
         va='center',
         color='black',
-        fontsize=10
+        fontsize=8
     )
 
     text_x = y + bar_length + 10
