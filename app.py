@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('genesis_characters.csv')
+df = pd.read_csv('gn_characters_pt.csv')
 
 # Create a new figure
 fig, ax = plt.subplots(figsize=(10, 6))
