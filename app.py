@@ -14,7 +14,7 @@ for index, row in df.iterrows():
     parenting_age = row['parenting_age']
     lifetime = row['lifetime']
     if y > 0:
-        ax.hlines(y=index, xmin=0, xmax=y, colors='gray', lw=1)
+        before_born_bar = ax.hlines(y=index, xmin=0, xmax=y, colors='gray', lw=1)
         text_x = y / 2
         text_y = index
         ax.text(
@@ -29,7 +29,7 @@ for index, row in df.iterrows():
 
     # Plot the first part of the bar (years until parenting age)
     # ax.barh(name, parenting_age, left=y, color='lightblue')
-    ax.barh(index, parenting_age, left=y, color='lightblue')
+    parenting_age_bar = ax.barh(index, parenting_age, left=y, color='lightblue')
     x = y + lifetime
     # ax.axvline(
     #     x=x,
@@ -59,7 +59,7 @@ for index, row in df.iterrows():
     y += parenting_age
     bar_length = lifetime - parenting_age
     # ax.barh(name, bar_length, left=y, color='lightgreen')
-    ax.barh(index, bar_length, left=y, color='lightgreen')
+    after_parenting_age_bar = ax.barh(index, bar_length, left=y, color='lightgreen')
 
     # Add text inside the bar
     text_x = y + bar_length / 2
@@ -97,6 +97,11 @@ ax.set_title('Genesis Timeline')
 # Invert chart
 ax.invert_yaxis()
 
+
+ax.legend(
+    [before_born_bar, parenting_age_bar, after_parenting_age_bar],
+    ['Anos antes de nascer', 'Anos antes do nascimento do filho especificado na próxima linha', 'Anos depois do nascimento do filho']
+    )
 # Display the Gantt chart
 plt.tight_layout()
 plt.show()
