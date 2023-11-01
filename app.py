@@ -10,6 +10,7 @@ fig, ax = plt.subplots(figsize=(10, 6))
 y = 0
 # Iterate through each row in the DataFrame without sorting
 for index, row in df.iterrows():
+    index += 1
     name = row['name'].capitalize()
     parenting_age = row['parenting_age']
     lifetime = row['lifetime']
@@ -88,6 +89,7 @@ for index, row in df.iterrows():
 
 # Set labels and title
 ax.set_xticks(list(range(100, 2500, 100)))
+ax.set_yticks(list(range(1, 24)))
 ax.tick_params(axis='x', rotation=45)
 ax.set_xlabel('Years Since Creation')
 ax.set_ylabel('Characters')
