@@ -87,8 +87,7 @@ for index, row in df.iterrows():
     )
 
 # Set labels and title
-ax.set_xticks(list(range(100, 2500, 100))
-)
+ax.set_xticks(list(range(100, 2500, 100)))
 ax.tick_params(axis='x', rotation=45)
 ax.set_xlabel('Years Since Creation')
 ax.set_ylabel('Characters')
